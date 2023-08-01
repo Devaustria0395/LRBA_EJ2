@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.bbva.lrba.mx.jsprk.example.v00.TransformerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.271 s - in com.bbva.lrba.mx.jsprk.example.v00.TransformerTest
