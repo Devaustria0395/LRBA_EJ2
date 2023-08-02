@@ -67,13 +67,14 @@ class JobExampleBuilderTest {
 
         final Target target = targetsList.getTargets().get(0);
         assertNotNull(target);
-        assertEquals("joinDNI", target.getAlias()); //joinDNI
+        assertEquals("joinDNI", target.getAlias());
         assertEquals("output/output.csv", target.getPhysicalName());
 
         final Target target2 = targetsList.getTargets().get(1);
         assertNotNull(target2);
-        assertEquals("joinDNI3", target2.getAlias()); //joinDNI
-        assertEquals("output/output.csv", target2.getPhysicalName());
+        assertEquals("joinDNI3", target2.getAlias());
+        assertEquals("output/output2.csv", target2.getPhysicalName());
+
     }
 
 }

@@ -67,7 +67,7 @@ public class JobExampleBuilder extends RegisterSparkBuilder {
                         .build())
                 .add(Target.File.Csv.builder()
                         .alias("joinDNI3")
-                        .physicalName("output/output.csv")
+                        .physicalName("output/output2.csv")
                         .serviceName(ServiceName)
                         .header(true)
                         .delimiter(",")
