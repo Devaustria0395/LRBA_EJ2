@@ -21,10 +21,11 @@ public class Transformer implements Transform {
         Dataset<Row> dataset3 = datasetsFromRead.get("sourceAlias3");
 
         Dataset<Row> joinDNI = dataset1.join(dataset2,"DNI");
-        Dataset<Row> joinDNI3 = dataset1.join(dataset3,"DNI");
-
+        Dataset<Row> joinDNI3 = dataset1.join(dataset3,"DNI").drop("DNI");
         joinDNI3.show();
 
+        datasetsToWrite.put("joinDNI",joinDNI);
+        datasetsToWrite.put("joinDNI3",joinDNI3);
 
         return datasetsToWrite;
     }

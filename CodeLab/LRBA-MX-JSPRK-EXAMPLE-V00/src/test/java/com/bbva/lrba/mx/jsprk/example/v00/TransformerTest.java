@@ -72,12 +72,11 @@ class TransformerTest extends LRBASparkTest {
         Dataset<Row> dataset3 = datasetUtils.createDataFrame(listRows3, schema3);
 
         final Map<String, Dataset<Row>> datasetMap = this.transformer.transform(new HashMap<>
-                (Map.of("sourceAlias1", dataset,"sourceAlias2",dataset2,"sourceAlias3",dataset3)));
-
+                (Map.of("sourceAlias1", dataset,"sourceAlias2",dataset2, "sourceAlias3",dataset3)));
         assertNotNull(datasetMap);
-        assertEquals(1, datasetMap.size());
+        assertEquals(2, datasetMap.size());
 
-        Dataset<RowData> returnedDs = datasetMap.get("targetAlias1").as(Encoders.bean(RowData.class));
+        Dataset<RowData> returnedDs = datasetMap.get("joinDNI3").as(Encoders.bean(RowData.class));
 
 
         final List<RowData> rows = datasetToTargetData(returnedDs, RowData.class);

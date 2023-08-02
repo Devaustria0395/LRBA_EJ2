@@ -1,0 +1,4 @@
+ENTIDAD,NOMBRE,TELEFONO,VIP,EMAIL,PAYMETHOD
+0182,John Doe,123-456,YES,johndoe@gmail.com,debit card
+0182,Mike Doe,123-567,NO,mikedoe@gmail.com,credit card
+0182,Paul Doe,123-678,YES,pauldoe@gmail.com,paypal

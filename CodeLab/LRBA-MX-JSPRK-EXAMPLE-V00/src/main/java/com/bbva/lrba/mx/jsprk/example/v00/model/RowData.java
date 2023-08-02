@@ -4,7 +4,7 @@ package com.bbva.lrba.mx.jsprk.example.v00.model;
 public class RowData {
 
     private String NOMBRE;
-    private String DNI;
+    //private String DNI;
     private String ENTIDAD;
     private String TELEFONO;
     private String EMAIL;
@@ -17,12 +17,12 @@ public class RowData {
         this.NOMBRE = NOMBRE;
     }
 
-    public String getDNI() {
+    /*public String getDNI() {
         return DNI;
     }
     public void setDNI(String DNI) {
         this.DNI = DNI;
-    }
+    }*/
 
     public String getENTIDAD() {
         return ENTIDAD;
