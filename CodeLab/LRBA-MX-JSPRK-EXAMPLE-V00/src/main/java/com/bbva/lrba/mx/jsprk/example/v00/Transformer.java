@@ -18,31 +18,13 @@ public class Transformer implements Transform {
 
         Dataset<Row> dataset1 = datasetsFromRead.get("sourceAlias1");
         Dataset<Row> dataset2 = datasetsFromRead.get("sourceAlias2");
+        Dataset<Row> dataset3 = datasetsFromRead.get("sourceAlias3");
 
         Dataset<Row> joinDNI = dataset1.join(dataset2,"DNI");
-        Dataset<Row> filteredDS = joinDNI.select("DNI").where(joinDNI.col("DNI").equalTo("000001"));
+        Dataset<Row> joinDNI3 = dataset1.join(dataset3,"DNI");
 
-        datasetsToWrite.put("targetAlias1",joinDNI);
+        joinDNI3.show();
 
-        System.out.println("Transformer");
-        System.out.println("Transformer count: " + joinDNI.count());
-        joinDNI.show();
-
-        System.out.println("Transformer columna Fecha");
-        Dataset<Row> columnaFecha = joinDNI.withColumn("Fecha", functions.lit(functions.current_date()));
-        columnaFecha.show();
-
-        System.out.println("Transformer columna caso DNI");
-        Dataset<Row> columnaDNI = columnaFecha.withColumn("Case",
-                functions.when(functions.col("DNI").equalTo(1) ,200)
-                        .otherwise(40))
-                        .withColumn("DNI", functions.col("DNI").cast("Integer"));
-        columnaDNI.show();
-
-        System.out.println("Transformer agg function");
-        columnaDNI.groupBy("Fecha").sum("DNI").drop("Fecha").show();
-        columnaDNI.groupBy("Fecha").avg("DNI").drop("Fecha").show();
-        columnaDNI.groupBy("Fecha").max("DNI").drop("Fecha").show();
 
         return datasetsToWrite;
     }

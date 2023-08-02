@@ -49,43 +49,36 @@ class TransformerTest extends LRBASparkTest {
                 });
         Row firstRow2 = RowFactory.create("000001", "johndoe@gmail.com");
         Row secondRow2 = RowFactory.create("000002", "mikedoe@gmail.com");
-        Row thridRow2 = RowFactory.create("000003", "pauldoe@gmail.com");
+        Row thirdRow2 = RowFactory.create("000003", "pauldoe@gmail.com");
+
+        StructType schema3 = DataTypes.createStructType(
+                new StructField[]{
+                        DataTypes.createStructField("DNI", DataTypes.StringType, false),
+                        DataTypes.createStructField("VIP", DataTypes.StringType, false),
+                        DataTypes.createStructField("EMAIL", DataTypes.StringType, false),
+                        DataTypes.createStructField("PAYMETHOD", DataTypes.StringType, false)
+                });
+        Row firstRow3 = RowFactory.create("000001", "YES","johndoe@gmail.com","debit card");
+        Row secondRow3 = RowFactory.create("000002", "NO","mikedoe@gmail.com","credit card");
+        Row thirdRow3 = RowFactory.create("000003", "YES","pauldoe@gmail.com","paypal");
 
         final List<Row> listRows = Arrays.asList(firstRow,secondRow,thridrow);
-        final List<Row> listRows2 = Arrays.asList(firstRow2,secondRow2,thridRow2);
+        final List<Row> listRows2 = Arrays.asList(firstRow2,secondRow2,thirdRow2);
+        final List<Row> listRows3 = Arrays.asList(firstRow3,secondRow3,thirdRow3);
 
         DatasetUtils<Row> datasetUtils = new DatasetUtils<>();
         Dataset<Row> dataset = datasetUtils.createDataFrame(listRows, schema);
         Dataset<Row> dataset2 = datasetUtils.createDataFrame(listRows2, schema2);
+        Dataset<Row> dataset3 = datasetUtils.createDataFrame(listRows3, schema3);
 
         final Map<String, Dataset<Row>> datasetMap = this.transformer.transform(new HashMap<>
-                (Map.of("sourceAlias1", dataset,"sourceAlias2",dataset2)));
+                (Map.of("sourceAlias1", dataset,"sourceAlias2",dataset2,"sourceAlias3",dataset3)));
 
         assertNotNull(datasetMap);
         assertEquals(1, datasetMap.size());
 
         Dataset<RowData> returnedDs = datasetMap.get("targetAlias1").as(Encoders.bean(RowData.class));
-        Dataset<Row> filteredDS = returnedDs.select("DNI").where(returnedDs.col("DNI")
-                .equalTo("000001"));
-        System.out.println("Transformer Test");
-        System.out.println("Transformer Test count: " + returnedDs.count());
-        returnedDs.show();
 
-        System.out.println("TransformerTest nueva columna");
-        Dataset<Row> columnaFecha = returnedDs.withColumn("Fecha", functions.lit(functions.current_date()));
-        columnaFecha.show();
-
-        System.out.println("TransformerTest columna caso DNI");
-        Dataset<Row> columnaDNI = columnaFecha.withColumn("Case",
-                functions.when(functions.col("DNI").equalTo(1) ,200)
-                        .otherwise(40))
-                        .withColumn("DNI", functions.col("DNI").cast("Integer"));
-        columnaDNI.show();
-
-        System.out.println("TransformerTest agg function");
-        columnaDNI.groupBy("Fecha").sum("DNI").drop("Fecha").show();
-        columnaDNI.groupBy("Fecha").avg("DNI").drop("Fecha").show();
-        columnaDNI.groupBy("Fecha").max("DNI").drop("Fecha").show();
 
         final List<RowData> rows = datasetToTargetData(returnedDs, RowData.class);
 

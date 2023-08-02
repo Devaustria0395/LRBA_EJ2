@@ -1,0 +1,4 @@
+"DNI,VIP,EMAIL,PAYMETHOD"
+"000001,YES,johndoe@gmail.com,debit card"
+"000002,NO,mikedoe@gmail.com,credit card"
+"000003,YES,pauldoe@gmail.com, paypal"

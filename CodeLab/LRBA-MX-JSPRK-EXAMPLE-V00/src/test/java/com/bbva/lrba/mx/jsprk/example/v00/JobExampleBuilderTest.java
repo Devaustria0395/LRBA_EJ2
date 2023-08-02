@@ -25,7 +25,7 @@ class JobExampleBuilderTest {
         final SourcesList sourcesList = this.jobExampleBuilder.registerSources();
         assertNotNull(sourcesList);
         assertNotNull(sourcesList.getSources());
-        assertEquals(2, sourcesList.getSources().size());
+        assertEquals(3, sourcesList.getSources().size());
 
         final Source source = sourcesList.getSources().get(0);
         assertNotNull(source);
@@ -36,6 +36,11 @@ class JobExampleBuilderTest {
         assertNotNull(source2);
         assertEquals("sourceAlias2", source2.getAlias());
         assertEquals("input2.csv", source2.getPhysicalName());
+
+        final Source source3 = sourcesList.getSources().get(2);
+        assertNotNull(source3);
+        assertEquals("sourceAlias3", source3.getAlias());
+        assertEquals("input3.csv", source3.getPhysicalName());
     }
 
     @Test
@@ -58,12 +63,17 @@ class JobExampleBuilderTest {
         final TargetsList targetsList = this.jobExampleBuilder.registerTargets();
         assertNotNull(targetsList);
         assertNotNull(targetsList.getTargets());
-        assertEquals(1, targetsList.getTargets().size());
+        assertEquals(2, targetsList.getTargets().size());
 
         final Target target = targetsList.getTargets().get(0);
         assertNotNull(target);
         assertEquals("joinDNI", target.getAlias()); //joinDNI
         assertEquals("output/output.csv", target.getPhysicalName());
+
+        final Target target2 = targetsList.getTargets().get(1);
+        assertNotNull(target2);
+        assertEquals("joinDNI3", target2.getAlias()); //joinDNI
+        assertEquals("output/output.csv", target2.getPhysicalName());
     }
 
 }

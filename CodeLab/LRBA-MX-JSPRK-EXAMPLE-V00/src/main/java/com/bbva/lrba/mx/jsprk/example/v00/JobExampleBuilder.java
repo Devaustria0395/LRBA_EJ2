@@ -33,6 +33,14 @@ public class JobExampleBuilder extends RegisterSparkBuilder {
                         .header(true)
                         .delimiter(",")
                         .build())
+                .add(Source.File.Csv.builder()
+                        .alias("sourceAlias3")
+                        .physicalName("input3.csv")
+                        .serviceName(ServiceName)
+                        .sql("SELECT * FROM sourceAlias3")
+                        .header(true)
+                        .delimiter(",")
+                        .build())
                 .build();
     }
 
@@ -52,6 +60,13 @@ public class JobExampleBuilder extends RegisterSparkBuilder {
         return TargetsList.builder()
                 .add(Target.File.Csv.builder()
                         .alias("joinDNI")
+                        .physicalName("output/output.csv")
+                        .serviceName(ServiceName)
+                        .header(true)
+                        .delimiter(",")
+                        .build())
+                .add(Target.File.Csv.builder()
+                        .alias("joinDNI3")
                         .physicalName("output/output.csv")
                         .serviceName(ServiceName)
                         .header(true)

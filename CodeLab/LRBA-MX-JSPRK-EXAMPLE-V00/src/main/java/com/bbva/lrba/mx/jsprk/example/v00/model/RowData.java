@@ -8,6 +8,7 @@ public class RowData {
     private String ENTIDAD;
     private String TELEFONO;
     private String EMAIL;
+    private String VIP;
 
     public String getNOMBRE() {
         return NOMBRE;
@@ -42,6 +43,13 @@ public class RowData {
     }
     public void setEMAIL(String EMAIL) {
         this.EMAIL = EMAIL;
+    }
+
+    public String getVIP() {
+        return VIP;
+    }
+    public void setVIP(String EMAIL) {
+        this.VIP = VIP;
     }
 
 }

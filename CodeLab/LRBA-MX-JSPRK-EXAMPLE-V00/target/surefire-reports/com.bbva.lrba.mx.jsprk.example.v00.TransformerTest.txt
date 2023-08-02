@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.bbva.lrba.mx.jsprk.example.v00.TransformerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.271 s - in com.bbva.lrba.mx.jsprk.example.v00.TransformerTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.935 s <<< FAILURE! - in com.bbva.lrba.mx.jsprk.example.v00.TransformerTest
+transform_Output  Time elapsed: 5.468 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.bbva.lrba.mx.jsprk.example.v00.TransformerTest.transform_Output(TransformerTest.java:80)
+
